@@ -1,0 +1,50 @@
+# ====================================================================
+# C# / .NET / Visual Studio Build Artifacts
+# ====================================================================
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Tt]est[Rr]esults/
+
+# MSBuild / Roslyn generated files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache, tracking, and diagnostics files
+.vs/
+*.pidb
+*.ide/
+*.ncb
+
+# ====================================================================
+# Content & Asset Pipeline Artifacts
+# ====================================================================
+# If using MonoGame/FNA Content Builder, ignore the built .xnb assets
+# But make sure you DO NOT ignore the raw .mgcb configuration file!
+Content/bin/
+Content/obj/
+
+# ====================================================================
+# Operating System & IDE Garbage
+# ====================================================================
+# Windows folder metadata
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# JetBrains Rider (if you use it instead of VS)
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
