@@ -1,0 +1,12 @@
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\bin\Debug\net9.0\GameLibrary.deps.json
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\bin\Debug\net9.0\GameLibrary.dll
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\bin\Debug\net9.0\GameLibrary.pdb
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.csproj.AssemblyReference.cache
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.AssemblyInfoInputs.cache
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.AssemblyInfo.cs
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.csproj.CoreCompileInputs.cache
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.dll
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\refint\GameLibrary.dll
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\GameLibrary.pdb
+c:\Users\aarak\monogame\SimpleChess\GameLibrary\obj\Debug\net9.0\ref\GameLibrary.dll
