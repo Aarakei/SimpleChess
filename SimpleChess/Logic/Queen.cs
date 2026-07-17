@@ -1,18 +1,15 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using GameLibrary.Graphics;
 
 namespace SimpleChess.Logic;
 
 public class Queen : ChessPiece
 {
 
-    public Queen(bool isWhite, Texture2D textureAtlas) : base(isWhite, textureAtlas, GetSourceRectangle(isWhite))
+    protected override string RegionName => IsWhite ? "whiteQueen" : "blackQueen";
+
+    public Queen(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)
     {
         
     }
 
-    public static Rectangle GetSourceRectangle(bool isWhite)
-    {
-        return new Rectangle(605, isWhite ? 1367 : 1211, 150, 150);
-    }
 }

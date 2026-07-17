@@ -1,4 +1,0 @@
-Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/images/chess_standard.png","c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/bin/DesktopGL/Content/images/chess_standard.xnb","TextureProcessor","Texture2DContent",65460,7308245,0.25003
-"c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/images/chess_wood.png","c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/bin/DesktopGL/Content/images/chess_wood.xnb","TextureProcessor","Texture2DContent",2950056,7308245,0.2112473
-"c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/images/monogamelogo.png","c:/Users/aarak/monogame/SimpleChess/SimpleChess/Content/bin/DesktopGL/Content/images/monogamelogo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.176455

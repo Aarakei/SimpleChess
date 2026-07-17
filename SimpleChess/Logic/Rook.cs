@@ -1,18 +1,15 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using GameLibrary.Graphics;
 
 namespace SimpleChess.Logic;
 
 public class Rook : ChessPiece
 {
 
-    public Rook(bool isWhite, Texture2D textureAtlas) : base(isWhite, textureAtlas, GetSourceRectangle(isWhite))
+    protected override string RegionName => IsWhite ? "whiteRook" : "blackRook";
+
+    public Rook(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)
     {
         
     }
 
-    public static Rectangle GetSourceRectangle(bool isWhite)
-    {
-        return new Rectangle(756, isWhite ? 1367 : 1211, 150, 150);
-    }
 }

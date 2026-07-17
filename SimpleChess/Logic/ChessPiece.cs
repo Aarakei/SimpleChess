@@ -3,21 +3,23 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameLibrary;
 using GameLibrary.Graphics;
-using System.Dynamic;
-using System.Reflection.Metadata.Ecma335;
 
 namespace SimpleChess.Logic;
 
 public abstract class ChessPiece
 {
-    public bool _isWhite {get; init;}
-    public TextureRegion _texture {get; init;}
-    public Sprite _sprite {get; init;}
+    public static float Size = 150;
+    public float BaseWidth => _texture.Width;
+    public float BaseHeight => _texture.Height;
+    public bool IsWhite {get; init;}
+    protected abstract string RegionName {get;}
+    private readonly TextureRegion _texture;
+    private readonly Sprite _sprite;
 
-    public ChessPiece(bool isWhite, Texture2D textureAtlas, Rectangle sourceRectangle)
+    public ChessPiece(bool isWhite, TextureAtlas atlas)
     {
-        _isWhite = isWhite;
-        _texture = new TextureRegion(textureAtlas, sourceRectangle.X, sourceRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
+        IsWhite = isWhite;
+        _texture = atlas.GetRegion(RegionName);
         _sprite = new Sprite(_texture);
     }
 

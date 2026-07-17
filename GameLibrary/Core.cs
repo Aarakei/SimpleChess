@@ -51,7 +51,16 @@ public class Core : Game
         base.Initialize();
 
         GraphicsDevice = base.GraphicsDevice;
+        Window.AllowUserResizing = true;
+        Window.ClientSizeChanged += OnWindowResize;
 
         SpriteBatch = new SpriteBatch(GraphicsDevice);
+    }
+
+    private void OnWindowResize(object sender, EventArgs e)
+    {
+        Graphics.PreferredBackBufferWidth = Window.ClientBounds.Width;
+        Graphics.PreferredBackBufferHeight = Window.ClientBounds.Height;
+        Graphics.ApplyChanges();
     }
 }

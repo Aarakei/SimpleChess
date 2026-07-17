@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas>
+    <Texture>images/chess_wood</Texture>
+    <Regions>
+        <Region name="board" x="1" y="5" width="1200" height="1200" />
+
+        <Region name="blackBishop" x="1" y="1211" width="150" height="150" />
+        <Region name="blackKing" x="152" y="1211" width="150" height="150" />
+        <Region name="blackKnight" x="303" y="1211" width="150" height="150" />
+        <Region name="blackPawn" x="454" y="1211" width="150" height="150" />
+        <Region name="blackQueen" x="605" y="1211" width="150" height="150" />
+        <Region name="blackRook" x="756" y="1211" width="150" height="150" />
+
+        <Region name="whiteBishop" x="1" y="1367" width="150" height="150" />
+        <Region name="whiteKing" x="152" y="1367" width="150" height="150" />
+        <Region name="whiteKnight" x="303" y="1367" width="150" height="150" />
+        <Region name="whitePawn" x="454" y="1367" width="150" height="150" />
+        <Region name="whiteQueen" x="605" y="1367" width="150" height="150" />
+        <Region name="whiteRook" x="756" y="1367" width="150" height="150" />
+
+    </Regions>
+</TextureAtlas>

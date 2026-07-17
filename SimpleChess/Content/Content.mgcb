@@ -37,6 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:images/chess_wood.png
 
+#begin images/chess_wood.xml
+/copy:images/chess_wood.xml
+
 #begin images/monogamelogo.png
 /importer:TextureImporter
 /processor:TextureProcessor
