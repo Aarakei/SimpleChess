@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameLibrary;
 using GameLibrary.Graphics;
+using System;
 
 namespace SimpleChess.Logic;
 
@@ -61,20 +62,37 @@ public class ChessBoard
         
         return board;
     }
-    
-    public void Draw(SpriteBatch spriteBatch, Vector2? position = null, float scale = 0.5f)
+
+    public void Draw(SpriteBatch spriteBatch, Vector2? position = null, float scale = 0.5f, bool flipped = false)
     {
         Vector2 drawPosition = position ?? Vector2.Zero;
         _sprite.Scale = new Vector2(scale,scale);
 
-        _sprite.Draw(spriteBatch, drawPosition);
-
-        for (int row = 0; row < 8; row++)
+        if (flipped)
         {
-            for (int col = 0; col < 8; col++)
+            _sprite.Effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
+            _sprite.Draw(spriteBatch, drawPosition);
+
+            for (int row = 0; row < 8; row++)
             {
-                _board[row,col]?.Draw(spriteBatch, new Vector2(col * CellSize, row * CellSize)*scale + drawPosition, scale);
+                for (int col = 0; col < 8; col++)
+                {
+                    _board[row,col]?.Draw(spriteBatch, new Vector2(7-col,7-row)*CellSize*scale + drawPosition, scale);
+                }
+            }
+        } else
+        {
+            _sprite.Effects = SpriteEffects.None;
+            _sprite.Draw(spriteBatch, drawPosition);
+
+            for (int row = 0; row < 8; row++)
+            {
+                for (int col = 0; col < 8; col++)
+                {
+                    _board[row,col]?.Draw(spriteBatch, new Vector2(col * CellSize, row * CellSize)*scale + drawPosition, scale);
+                }
             }
         }
+        
     }
 }

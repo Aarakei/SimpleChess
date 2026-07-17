@@ -57,7 +57,7 @@ public class Core : Game
         SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 
-    private void OnWindowResize(object sender, EventArgs e)
+    protected virtual void OnWindowResize(object sender, EventArgs e)
     {
         Graphics.PreferredBackBufferWidth = Window.ClientBounds.Width;
         Graphics.PreferredBackBufferHeight = Window.ClientBounds.Height;

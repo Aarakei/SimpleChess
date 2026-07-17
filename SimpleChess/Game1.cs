@@ -11,7 +11,11 @@ namespace SimpleChess;
 
 public class Game1 : Core
 {
+    private float _scale;
+    private Vector2 _boardPosition;
+    private bool _boardFlipped;
     private ChessBoard _chessBoard;
+    private MouseState _mouseState;
     
     public Game1() : base("SimpleChess", 1280, 720, false)
     {
@@ -25,6 +29,8 @@ public class Game1 : Core
         base.Initialize(); // LoadContent is called at the end of this function call
 
         // Initialization that depends on content being loaded goes here
+        PositionBoard();
+        _boardFlipped = false;
     }
 
     protected override void LoadContent()
@@ -45,36 +51,47 @@ public class Game1 : Core
             Exit();
 
         // TODO: Add your update logic here
-        
-
+        _mouseState = Mouse.GetState();
+        _boardFlipped = _mouseState.LeftButton == ButtonState.Pressed;
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-
-        // Scale the board to the maximum allowable size within the window
-        float scale;
-        if (Window.ClientBounds.Height < Window.ClientBounds.Width)
-            scale = Window.ClientBounds.Height / _chessBoard.BaseHeight;
-        else
-            scale = Window.ClientBounds.Width / _chessBoard.BaseWidth;
-
         
         SpriteBatch.Begin();
         
         _chessBoard.Draw(
                         SpriteBatch,
-                        new Vector2(
-                            (Window.ClientBounds.Width - _chessBoard.BaseWidth*scale)/2,
-                            (Window.ClientBounds.Height - _chessBoard.BaseHeight*scale)/2),
-                        scale
+                        _boardPosition,
+                        _scale,
+                        _boardFlipped
                         );
 
         SpriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    protected override void OnWindowResize(object sender, EventArgs e)
+    {
+        base.OnWindowResize(sender, e);
+
+        PositionBoard();
+    }
+
+    private void PositionBoard()
+    {
+        // Scale the board to the maximum allowable size within the window
+        if (Window.ClientBounds.Height < Window.ClientBounds.Width)
+            _scale = Window.ClientBounds.Height / _chessBoard.BaseHeight;
+        else
+            _scale = Window.ClientBounds.Width / _chessBoard.BaseWidth;
+
+        // Calculate the board's standard position
+        _boardPosition = new Vector2((Window.ClientBounds.Width - _chessBoard.BaseWidth*_scale)/2,
+                                     (Window.ClientBounds.Height - _chessBoard.BaseHeight*_scale)/2);
     }
 
 }
