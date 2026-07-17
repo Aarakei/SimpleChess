@@ -16,6 +16,7 @@ public class Game1 : Core
     private bool _boardFlipped;
     private ChessBoard _chessBoard;
     private MouseState _mouseState;
+    private MouseState _previousMouseState;
     
     public Game1() : base("SimpleChess", 1280, 720, false)
     {
@@ -31,6 +32,7 @@ public class Game1 : Core
         // Initialization that depends on content being loaded goes here
         PositionBoard();
         _boardFlipped = false;
+        _previousMouseState = Mouse.GetState();
     }
 
     protected override void LoadContent()
@@ -51,8 +53,17 @@ public class Game1 : Core
             Exit();
 
         // TODO: Add your update logic here
+
+        // If there was a click
         _mouseState = Mouse.GetState();
-        _boardFlipped = _mouseState.LeftButton == ButtonState.Pressed;
+        if (_mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
+        {
+            _chessBoard.OnClick(new Vector2(_mouseState.X,_mouseState.Y),_boardPosition,_scale,_boardFlipped);
+        }
+        _previousMouseState = _mouseState;
+
+        // _chessBoard.Update(_mouseState, _boardPosition, _scale, _boardFlipped);
+
         base.Update(gameTime);
     }
 

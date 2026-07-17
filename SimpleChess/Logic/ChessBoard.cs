@@ -14,21 +14,21 @@ public class ChessBoard
     private TextureRegion _texture {get; init;}
     private Sprite _sprite {get; init;}
     private ChessPiece[,] _board;
+    private Point? _selectedPiece;
 
-    // Provide original pixel width, regardless of current scale of sprite
+    // Provides original pixel width, regardless of current scale of sprite
     public float BaseWidth => _texture.Width;
     public float BaseHeight => _texture.Height;
 
     public ChessBoard(TextureAtlas atlas)
     {
         _textureAtlas = atlas;
-
         _texture = atlas.GetRegion("board");
         _sprite = new Sprite(_texture);
 
-        
-
         _board = InitializeChessBoard(atlas);
+
+        _selectedPiece = null;
         
     }
 
@@ -63,6 +63,35 @@ public class ChessBoard
         return board;
     }
 
+    public void Update(MouseState mouseState, Vector2 position, float scale, bool flipped)
+    {
+        
+    }
+
+    public void OnClick(Vector2 mousePosition, Vector2 position, float scale, bool flipped)
+    {
+        Point? selectedPoint = GetSelectedPoint(mousePosition, position, scale, flipped);
+
+        // Deselect the current piece if the click is on the same piece or out of bounds
+        if (!selectedPoint.HasValue || selectedPoint == _selectedPiece)
+        {
+            _selectedPiece = null;
+            return;
+        }
+
+        // A new square is being selected
+        if (_selectedPiece == null)
+        {
+            _selectedPiece = selectedPoint;
+        } else
+        {
+            //TODO: validate the move using the selected piece's own method
+            MovePiece(selectedPoint.Value, _selectedPiece.Value);
+            _selectedPiece = null;
+        }
+
+    }
+
     public void Draw(SpriteBatch spriteBatch, Vector2? position = null, float scale = 0.5f, bool flipped = false)
     {
         Vector2 drawPosition = position ?? Vector2.Zero;
@@ -94,5 +123,30 @@ public class ChessBoard
             }
         }
         
+    }
+
+    private Point? GetSelectedPoint(Vector2 mousePosition, Vector2 boardPosition, float scale, bool flipped)
+    {
+        int row = (int)((mousePosition.Y-boardPosition.Y)/CellSize/scale);
+        int col = (int)((mousePosition.X-boardPosition.X)/CellSize/scale);
+        
+        if (row < 0 || row > 7 || col < 0 || col > 7)
+        {
+            return null;
+        }
+
+        if (flipped)
+        {
+            row = 7 - row;
+            col = 7 - col;
+        }
+
+        return new Point(row, col);
+    }
+
+    private void MovePiece(Point to, Point from)
+    {
+        _board[to.X,to.Y] = _board[from.X, from.Y];
+        _board[from.X, from.Y] = null;
     }
 }
