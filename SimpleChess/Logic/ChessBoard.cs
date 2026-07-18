@@ -38,27 +38,27 @@ public class ChessBoard
 
             // Black Pieces
             board[0,0] = new Rook(false, atlas);
-            board[0,1] = new Knight(false, atlas);
-            board[0,2] = new Bishop(false, atlas);
-            board[0,3] = new Queen(false, atlas);
-            board[0,4] = new King(false, atlas);
-            board[0,5] = new Bishop(false, atlas);
-            board[0,6] = new Knight(false, atlas);
-            board[0,7] = new Rook(false, atlas);
+            board[1,0] = new Knight(false, atlas);
+            board[2,0] = new Bishop(false, atlas);
+            board[3,0] = new Queen(false, atlas);
+            board[4,0] = new King(false, atlas);
+            board[5,0] = new Bishop(false, atlas);
+            board[6,0] = new Knight(false, atlas);
+            board[7,0] = new Rook(false, atlas);
             for (int i = 0; i < 8; i++)
-                board[1,i] = new Pawn(false, atlas);
+                board[i,1] = new Pawn(false, atlas);
 
             // White Pieces
-            board[7,0] = new Rook(true, atlas);
-            board[7,1] = new Knight(true, atlas);
-            board[7,2] = new Bishop(true, atlas);
-            board[7,3] = new Queen(true, atlas);
-            board[7,4] = new King(true, atlas);
-            board[7,5] = new Bishop(true, atlas);
-            board[7,6] = new Knight(true, atlas);
+            board[0,7] = new Rook(true, atlas);
+            board[1,7] = new Knight(true, atlas);
+            board[2,7] = new Bishop(true, atlas);
+            board[3,7] = new Queen(true, atlas);
+            board[4,7] = new King(true, atlas);
+            board[5,7] = new Bishop(true, atlas);
+            board[6,7] = new Knight(true, atlas);
             board[7,7] = new Rook(true, atlas);
             for (int i = 0; i < 8; i++)
-                board[6,i] = new Pawn(true, atlas);
+                board[i,6] = new Pawn(true, atlas);
         
         return board;
     }
@@ -82,10 +82,15 @@ public class ChessBoard
         // A new square is being selected
         if (_selectedPiece == null)
         {
-            _selectedPiece = selectedPoint;
+            Point newPoint = selectedPoint.Value;
+            // Only allow the selecting of non-empty squares
+            if (_board[newPoint.X,newPoint.Y] != null)
+                _selectedPiece = selectedPoint;
         } else
         {
             //TODO: validate the move using the selected piece's own method
+            ChessPiece piece = _board[_selectedPiece.Value.X,_selectedPiece.Value.Y];
+            if (piece.GetLegalMoves(_board,_selectedPiece.Value).Contains(selectedPoint.Value))
             MovePiece(selectedPoint.Value, _selectedPiece.Value);
             _selectedPiece = null;
         }
@@ -98,31 +103,21 @@ public class ChessBoard
         _sprite.Scale = new Vector2(scale,scale);
 
         if (flipped)
-        {
             _sprite.Effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
-            _sprite.Draw(spriteBatch, drawPosition);
-
-            for (int row = 0; row < 8; row++)
-            {
-                for (int col = 0; col < 8; col++)
-                {
-                    _board[row,col]?.Draw(spriteBatch, new Vector2(7-col,7-row)*CellSize*scale + drawPosition, scale);
-                }
-            }
-        } else
-        {
+        else
             _sprite.Effects = SpriteEffects.None;
-            _sprite.Draw(spriteBatch, drawPosition);
 
-            for (int row = 0; row < 8; row++)
+        
+        _sprite.Draw(spriteBatch, drawPosition);
+
+        for (int row = 0; row < 8; row++)
+        {
+            for (int col = 0; col < 8; col++)
             {
-                for (int col = 0; col < 8; col++)
-                {
-                    _board[row,col]?.Draw(spriteBatch, new Vector2(col * CellSize, row * CellSize)*scale + drawPosition, scale);
-                }
+                Vector2 cell = flipped ? new Vector2(7-col,7-row) : new Vector2(col,row);
+                _board[col,row]?.Draw(spriteBatch, cell*CellSize*scale + drawPosition, scale);
             }
         }
-        
     }
 
     private Point? GetSelectedPoint(Vector2 mousePosition, Vector2 boardPosition, float scale, bool flipped)
@@ -141,7 +136,7 @@ public class ChessBoard
             col = 7 - col;
         }
 
-        return new Point(row, col);
+        return new Point(col, row);
     }
 
     private void MovePiece(Point to, Point from)
