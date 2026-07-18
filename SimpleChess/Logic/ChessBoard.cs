@@ -10,8 +10,9 @@ namespace SimpleChess.Logic;
 
 public class ChessBoard
 {
+    private bool _isWhiteTurn;
     public int CellSize {get;} = 150;
-    private TextureAtlas _textureAtlas {get; init;}
+    private TextureAtlas _textureAtlas;
     private TextureRegion _texture {get; init;}
     private Sprite _sprite {get; init;}
     private Sprite _cellOverlay {get; set;}
@@ -32,13 +33,13 @@ public class ChessBoard
 
         TextureRegion square = atlas.GetRegion("cellOverlay");
         _cellOverlay = new Sprite(square);
-        _cellOverlay.Scale = new Vector2(CellSize,CellSize);
 
         _board = InitializeChessBoard(atlas);
-        _selectedLegalMoves = new List<Point>();
 
         _selectedPiece = null;
-        
+        _selectedLegalMoves = new List<Point>();
+
+        _isWhiteTurn = true;
     }
 
     private static ChessPiece[,] InitializeChessBoard(TextureAtlas atlas)
@@ -93,8 +94,8 @@ public class ChessBoard
         if (_selectedPiece == null)
         {
             Point newPoint = selectedPoint.Value;
-            // Only allow the selecting of non-empty squares
-            if (_board[newPoint.X,newPoint.Y] != null)
+            // Only allow the selecting of non-empty squares that contain the turn player's pieces
+            if (_board[newPoint.X,newPoint.Y] != null && _board[newPoint.X,newPoint.Y].IsWhite == _isWhiteTurn)
                 SelectPiece(selectedPoint.Value);
         } else
         {
@@ -183,5 +184,7 @@ public class ChessBoard
     {
         _board[to.X,to.Y] = _board[from.X, from.Y];
         _board[from.X, from.Y] = null;
+
+        _isWhiteTurn = !_isWhiteTurn;
     }
 }
