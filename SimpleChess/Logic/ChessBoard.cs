@@ -13,6 +13,7 @@ public class ChessBoard
     private TextureAtlas _textureAtlas {get; init;}
     private TextureRegion _texture {get; init;}
     private Sprite _sprite {get; init;}
+    private Sprite _cellOverlay {get; set;}
     private ChessPiece[,] _board;
     private Point? _selectedPiece;
 
@@ -25,6 +26,10 @@ public class ChessBoard
         _textureAtlas = atlas;
         _texture = atlas.GetRegion("board");
         _sprite = new Sprite(_texture);
+
+        TextureRegion square = atlas.GetRegion("cellOverlay");
+        _cellOverlay = new Sprite(square);
+        _cellOverlay.Scale = new Vector2(CellSize,CellSize);
 
         _board = InitializeChessBoard(atlas);
 
@@ -117,6 +122,15 @@ public class ChessBoard
                 Vector2 cell = flipped ? new Vector2(7-col,7-row) : new Vector2(col,row);
                 _board[col,row]?.Draw(spriteBatch, cell*CellSize*scale + drawPosition, scale);
             }
+        }
+
+        if (_selectedPiece != null)
+        {
+            Point cell = _selectedPiece.Value;
+            Vector2 cellPos = flipped ? new Vector2(7-cell.X,7-cell.Y) : new Vector2(cell.X,cell.Y);
+            _cellOverlay.Color = Color.White * 0.5f;
+            _cellOverlay.Scale = new Vector2(scale, scale) * CellSize;
+            _cellOverlay.Draw(spriteBatch, cellPos*CellSize*scale + drawPosition);
         }
     }
 

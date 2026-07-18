@@ -3,6 +3,7 @@
     <Texture>images/chess_wood</Texture>
     <Regions>
         <Region name="board" x="1" y="5" width="1200" height="1200" />
+        <Region name="cellOverlay" x="0" y="0" width="1" height="1" />
 
         <Region name="blackBishop" x="1" y="1211" width="150" height="150" />
         <Region name="blackKing" x="152" y="1211" width="150" height="150" />
