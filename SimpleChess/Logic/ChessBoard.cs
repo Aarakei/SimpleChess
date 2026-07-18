@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using GameLibrary;
 using GameLibrary.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace SimpleChess.Logic;
 
@@ -16,10 +17,12 @@ public class ChessBoard
     private Sprite _cellOverlay {get; set;}
     private ChessPiece[,] _board;
     private Point? _selectedPiece;
+    private List<Point> _selectedLegalMoves;
 
     // Provides original pixel width, regardless of current scale of sprite
     public float BaseWidth => _texture.Width;
     public float BaseHeight => _texture.Height;
+    
 
     public ChessBoard(TextureAtlas atlas)
     {
@@ -32,6 +35,7 @@ public class ChessBoard
         _cellOverlay.Scale = new Vector2(CellSize,CellSize);
 
         _board = InitializeChessBoard(atlas);
+        _selectedLegalMoves = new List<Point>();
 
         _selectedPiece = null;
         
@@ -81,6 +85,7 @@ public class ChessBoard
         if (!selectedPoint.HasValue || selectedPoint == _selectedPiece)
         {
             _selectedPiece = null;
+            _selectedLegalMoves.Clear();
             return;
         }
 
@@ -90,14 +95,16 @@ public class ChessBoard
             Point newPoint = selectedPoint.Value;
             // Only allow the selecting of non-empty squares
             if (_board[newPoint.X,newPoint.Y] != null)
-                _selectedPiece = selectedPoint;
+                SelectPiece(selectedPoint.Value);
         } else
         {
             //TODO: validate the move using the selected piece's own method
             ChessPiece piece = _board[_selectedPiece.Value.X,_selectedPiece.Value.Y];
             if (piece.GetLegalMoves(_board,_selectedPiece.Value).Contains(selectedPoint.Value))
-            MovePiece(selectedPoint.Value, _selectedPiece.Value);
+                MovePiece(selectedPoint.Value, _selectedPiece.Value);
+
             _selectedPiece = null;
+            _selectedLegalMoves.Clear();
         }
 
     }
@@ -105,16 +112,16 @@ public class ChessBoard
     public void Draw(SpriteBatch spriteBatch, Vector2? position = null, float scale = 0.5f, bool flipped = false)
     {
         Vector2 drawPosition = position ?? Vector2.Zero;
-        _sprite.Scale = new Vector2(scale,scale);
 
+        // Draw chess board
+        _sprite.Scale = new Vector2(scale,scale);
         if (flipped)
             _sprite.Effects = SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically;
         else
             _sprite.Effects = SpriteEffects.None;
-
-        
         _sprite.Draw(spriteBatch, drawPosition);
 
+        // Draw all pieces
         for (int row = 0; row < 8; row++)
         {
             for (int col = 0; col < 8; col++)
@@ -126,12 +133,23 @@ public class ChessBoard
 
         if (_selectedPiece != null)
         {
+            // Draw selected piece overlay
             Point cell = _selectedPiece.Value;
             Vector2 cellPos = flipped ? new Vector2(7-cell.X,7-cell.Y) : new Vector2(cell.X,cell.Y);
-            _cellOverlay.Color = Color.White * 0.5f;
+            _cellOverlay.Color = Color.White * 0.25f;
             _cellOverlay.Scale = new Vector2(scale, scale) * CellSize;
             _cellOverlay.Draw(spriteBatch, cellPos*CellSize*scale + drawPosition);
+
+            // Draw legal moves overlay
+            foreach (Point move in _selectedLegalMoves)
+            {
+                Vector2 movePos = flipped ? new Vector2(7-move.X,7-move.Y) : new Vector2(move.X,move.Y);
+                _cellOverlay.Color = Color.Green * 0.25f;
+                _cellOverlay.Draw(spriteBatch, movePos*CellSize*scale + drawPosition);
+            }
         }
+
+
     }
 
     private Point? GetSelectedPoint(Vector2 mousePosition, Vector2 boardPosition, float scale, bool flipped)
@@ -151,6 +169,14 @@ public class ChessBoard
         }
 
         return new Point(col, row);
+    }
+
+    private void SelectPiece(Point cell)
+    {
+        _selectedPiece = cell;
+        ChessPiece piece = _board[cell.X,cell.Y];
+        _selectedLegalMoves.Clear();
+        _selectedLegalMoves = piece.GetLegalMoves(_board, cell);
     }
 
     private void MovePiece(Point to, Point from)
