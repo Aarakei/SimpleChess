@@ -26,6 +26,7 @@ public class Game1 : Core
     private ChessBoard _chessBoard;
     private MouseState _mouseState;
     private MouseState _previousMouseState;
+    private KeyboardState _previousKeyboardState;
     
     public Game1() : base("SimpleChess", 1280, 720, false)
     {
@@ -62,11 +63,10 @@ public class Game1 : Core
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
-
         // Flip the board if the F key is pressed
         KeyboardState keyboard = Keyboard.GetState();
-        _boardFlipped = keyboard.IsKeyDown(Keys.F);
+        if (keyboard.IsKeyDown(Keys.F) && !_previousKeyboardState.IsKeyDown(Keys.F))
+            _boardFlipped = !_boardFlipped;
 
         // If there was a click
         _mouseState = Mouse.GetState();
@@ -84,6 +84,7 @@ public class Game1 : Core
             }
         }
         _previousMouseState = _mouseState;
+        _previousKeyboardState = keyboard;
 
         // _chessBoard.Update(_mouseState, _boardPosition, _scale, _boardFlipped);
 
