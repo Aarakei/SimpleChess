@@ -1,0 +1,304 @@
+{
+  "compilationOptions": {},
+  "libraries": {
+    "GameLibrary/1.0.0": {
+      "path": "./",
+      "serviceable": false,
+      "sha512": "",
+      "type": "project"
+    },
+    "MonoGame.Framework.DesktopGL/3.8.5": {
+      "hashPath": "monogame.framework.desktopgl.3.8.5.nupkg.sha512",
+      "path": "./",
+      "serviceable": true,
+      "sha512": "sha512-oG5Thkic4i/6kX3OWtq2p6DEATflP71yM0p/1ymIoFaIp1xNFOqAd4jW2D9GIQLIMT6mn5RmJknYPqJnOQbi5w==",
+      "type": "package"
+    },
+    "MonoGame.Library.OpenAL/1.24.3.4": {
+      "hashPath": "monogame.library.openal.1.24.3.4.nupkg.sha512",
+      "path": "./",
+      "serviceable": true,
+      "sha512": "sha512-/FhE0hblY9owGPvIHnMbH+6kXtjfl+/t3Cm776RQiZnGyxGy2Qd9pTAzclLuMO8pvtjiGLYkkRwjRciUA4XFyQ==",
+      "type": "package"
+    },
+    "MonoGame.Library.SDL/2.32.10.2": {
+      "hashPath": "monogame.library.sdl.2.32.10.2.nupkg.sha512",
+      "path": "./",
+      "serviceable": true,
+      "sha512": "sha512-mtnmWr50KgH2Ui9fPscHPMI3sXgb5NBRnPS7igi4ViJ23ROdP+MLi/j9CmLWX47KuXvI3Bp5BElCDVwRUlswgg==",
+      "type": "package"
+    },
+    "NVorbis/0.10.4": {
+      "hashPath": "nvorbis.0.10.4.nupkg.sha512",
+      "path": "./",
+      "serviceable": true,
+      "sha512": "sha512-WYnil3DhQHzjCY0dM9I2B3r1vWip90AOuQd25KE4NrjPQBg0tBJFluRLm5YPnO5ZLDmwrfosY8jCQGQRmWI/Pg==",
+      "type": "package"
+    },
+    "SimpleChess/1.0.0": {
+      "path": "./",
+      "serviceable": false,
+      "sha512": "",
+      "type": "project"
+    },
+    "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/9.0.15": {
+      "path": "./",
+      "serviceable": false,
+      "sha512": "",
+      "type": "runtimepack"
+    }
+  },
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0/win-x64",
+    "signature": ""
+  },
+  "runtimes": {
+    "win-x64": [
+      "win",
+      "any",
+      "base"
+    ]
+  },
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {},
+    ".NETCoreApp,Version=v9.0/win-x64": {
+      "GameLibrary/1.0.0": {
+        "resources": {},
+        "runtime": {
+          "./GameLibrary.dll": {}
+        }
+      },
+      "MonoGame.Framework.DesktopGL/3.8.5": {
+        "dependencies": {
+          "MonoGame.Library.OpenAL": "1.24.3.4",
+          "MonoGame.Library.SDL": "2.32.10.2",
+          "NVorbis": "0.10.4"
+        },
+        "resources": {},
+        "runtime": {
+          "./MonoGame.Framework.dll": {}
+        }
+      },
+      "MonoGame.Library.OpenAL/1.24.3.4": {
+        "native": {
+          "./openal.dll": {}
+        },
+        "resources": {}
+      },
+      "MonoGame.Library.SDL/2.32.10.2": {
+        "native": {
+          "./SDL2.dll": {}
+        },
+        "resources": {}
+      },
+      "NVorbis/0.10.4": {
+        "resources": {},
+        "runtime": {
+          "./NVorbis.dll": {}
+        }
+      },
+      "SimpleChess/1.0.0": {
+        "dependencies": {
+          "GameLibrary": "1.0.0",
+          "MonoGame.Framework.DesktopGL": "3.8.5",
+          "runtimepack.Microsoft.NETCore.App.Runtime.win-x64": "9.0.15"
+        },
+        "resources": {},
+        "runtime": {
+          "./SimpleChess.dll": {}
+        }
+      },
+      "runtimepack.Microsoft.NETCore.App.Runtime.win-x64/9.0.15": {
+        "native": {
+          "./Microsoft.DiaSymReader.Native.amd64.dll": {},
+          "./System.IO.Compression.Native.dll": {},
+          "./clretwrc.dll": {},
+          "./clrgc.dll": {},
+          "./clrgcexp.dll": {},
+          "./clrjit.dll": {},
+          "./coreclr.dll": {},
+          "./createdump.exe": {},
+          "./hostfxr.dll": {},
+          "./hostpolicy.dll": {},
+          "./mscordaccore.dll": {},
+          "./mscordaccore_amd64_amd64_9.0.1526.17522.dll": {},
+          "./mscordbi.dll": {},
+          "./mscorrc.dll": {},
+          "./msquic.dll": {}
+        },
+        "resources": {},
+        "runtime": {
+          "./Microsoft.CSharp.dll": {},
+          "./Microsoft.VisualBasic.Core.dll": {},
+          "./Microsoft.VisualBasic.dll": {},
+          "./Microsoft.Win32.Primitives.dll": {},
+          "./Microsoft.Win32.Registry.dll": {},
+          "./System.AppContext.dll": {},
+          "./System.Buffers.dll": {},
+          "./System.Collections.Concurrent.dll": {},
+          "./System.Collections.Immutable.dll": {},
+          "./System.Collections.NonGeneric.dll": {},
+          "./System.Collections.Specialized.dll": {},
+          "./System.Collections.dll": {},
+          "./System.ComponentModel.Annotations.dll": {},
+          "./System.ComponentModel.DataAnnotations.dll": {},
+          "./System.ComponentModel.EventBasedAsync.dll": {},
+          "./System.ComponentModel.Primitives.dll": {},
+          "./System.ComponentModel.TypeConverter.dll": {},
+          "./System.ComponentModel.dll": {},
+          "./System.Configuration.dll": {},
+          "./System.Console.dll": {},
+          "./System.Core.dll": {},
+          "./System.Data.Common.dll": {},
+          "./System.Data.DataSetExtensions.dll": {},
+          "./System.Data.dll": {},
+          "./System.Diagnostics.Contracts.dll": {},
+          "./System.Diagnostics.Debug.dll": {},
+          "./System.Diagnostics.DiagnosticSource.dll": {},
+          "./System.Diagnostics.FileVersionInfo.dll": {},
+          "./System.Diagnostics.Process.dll": {},
+          "./System.Diagnostics.StackTrace.dll": {},
+          "./System.Diagnostics.TextWriterTraceListener.dll": {},
+          "./System.Diagnostics.Tools.dll": {},
+          "./System.Diagnostics.TraceSource.dll": {},
+          "./System.Diagnostics.Tracing.dll": {},
+          "./System.Drawing.Primitives.dll": {},
+          "./System.Drawing.dll": {},
+          "./System.Dynamic.Runtime.dll": {},
+          "./System.Formats.Asn1.dll": {},
+          "./System.Formats.Tar.dll": {},
+          "./System.Globalization.Calendars.dll": {},
+          "./System.Globalization.Extensions.dll": {},
+          "./System.Globalization.dll": {},
+          "./System.IO.Compression.Brotli.dll": {},
+          "./System.IO.Compression.FileSystem.dll": {},
+          "./System.IO.Compression.ZipFile.dll": {},
+          "./System.IO.Compression.dll": {},
+          "./System.IO.FileSystem.AccessControl.dll": {},
+          "./System.IO.FileSystem.DriveInfo.dll": {},
+          "./System.IO.FileSystem.Primitives.dll": {},
+          "./System.IO.FileSystem.Watcher.dll": {},
+          "./System.IO.FileSystem.dll": {},
+          "./System.IO.IsolatedStorage.dll": {},
+          "./System.IO.MemoryMappedFiles.dll": {},
+          "./System.IO.Pipelines.dll": {},
+          "./System.IO.Pipes.AccessControl.dll": {},
+          "./System.IO.Pipes.dll": {},
+          "./System.IO.UnmanagedMemoryStream.dll": {},
+          "./System.IO.dll": {},
+          "./System.Linq.Expressions.dll": {},
+          "./System.Linq.Parallel.dll": {},
+          "./System.Linq.Queryable.dll": {},
+          "./System.Linq.dll": {},
+          "./System.Memory.dll": {},
+          "./System.Net.Http.Json.dll": {},
+          "./System.Net.Http.dll": {},
+          "./System.Net.HttpListener.dll": {},
+          "./System.Net.Mail.dll": {},
+          "./System.Net.NameResolution.dll": {},
+          "./System.Net.NetworkInformation.dll": {},
+          "./System.Net.Ping.dll": {},
+          "./System.Net.Primitives.dll": {},
+          "./System.Net.Quic.dll": {},
+          "./System.Net.Requests.dll": {},
+          "./System.Net.Security.dll": {},
+          "./System.Net.ServicePoint.dll": {},
+          "./System.Net.Sockets.dll": {},
+          "./System.Net.WebClient.dll": {},
+          "./System.Net.WebHeaderCollection.dll": {},
+          "./System.Net.WebProxy.dll": {},
+          "./System.Net.WebSockets.Client.dll": {},
+          "./System.Net.WebSockets.dll": {},
+          "./System.Net.dll": {},
+          "./System.Numerics.Vectors.dll": {},
+          "./System.Numerics.dll": {},
+          "./System.ObjectModel.dll": {},
+          "./System.Private.CoreLib.dll": {},
+          "./System.Private.DataContractSerialization.dll": {},
+          "./System.Private.Uri.dll": {},
+          "./System.Private.Xml.Linq.dll": {},
+          "./System.Private.Xml.dll": {},
+          "./System.Reflection.DispatchProxy.dll": {},
+          "./System.Reflection.Emit.ILGeneration.dll": {},
+          "./System.Reflection.Emit.Lightweight.dll": {},
+          "./System.Reflection.Emit.dll": {},
+          "./System.Reflection.Extensions.dll": {},
+          "./System.Reflection.Metadata.dll": {},
+          "./System.Reflection.Primitives.dll": {},
+          "./System.Reflection.TypeExtensions.dll": {},
+          "./System.Reflection.dll": {},
+          "./System.Resources.Reader.dll": {},
+          "./System.Resources.ResourceManager.dll": {},
+          "./System.Resources.Writer.dll": {},
+          "./System.Runtime.CompilerServices.Unsafe.dll": {},
+          "./System.Runtime.CompilerServices.VisualC.dll": {},
+          "./System.Runtime.Extensions.dll": {},
+          "./System.Runtime.Handles.dll": {},
+          "./System.Runtime.InteropServices.JavaScript.dll": {},
+          "./System.Runtime.InteropServices.RuntimeInformation.dll": {},
+          "./System.Runtime.InteropServices.dll": {},
+          "./System.Runtime.Intrinsics.dll": {},
+          "./System.Runtime.Loader.dll": {},
+          "./System.Runtime.Numerics.dll": {},
+          "./System.Runtime.Serialization.Formatters.dll": {},
+          "./System.Runtime.Serialization.Json.dll": {},
+          "./System.Runtime.Serialization.Primitives.dll": {},
+          "./System.Runtime.Serialization.Xml.dll": {},
+          "./System.Runtime.Serialization.dll": {},
+          "./System.Runtime.dll": {},
+          "./System.Security.AccessControl.dll": {},
+          "./System.Security.Claims.dll": {},
+          "./System.Security.Cryptography.Algorithms.dll": {},
+          "./System.Security.Cryptography.Cng.dll": {},
+          "./System.Security.Cryptography.Csp.dll": {},
+          "./System.Security.Cryptography.Encoding.dll": {},
+          "./System.Security.Cryptography.OpenSsl.dll": {},
+          "./System.Security.Cryptography.Primitives.dll": {},
+          "./System.Security.Cryptography.X509Certificates.dll": {},
+          "./System.Security.Cryptography.dll": {},
+          "./System.Security.Principal.Windows.dll": {},
+          "./System.Security.Principal.dll": {},
+          "./System.Security.SecureString.dll": {},
+          "./System.Security.dll": {},
+          "./System.ServiceModel.Web.dll": {},
+          "./System.ServiceProcess.dll": {},
+          "./System.Text.Encoding.CodePages.dll": {},
+          "./System.Text.Encoding.Extensions.dll": {},
+          "./System.Text.Encoding.dll": {},
+          "./System.Text.Encodings.Web.dll": {},
+          "./System.Text.Json.dll": {},
+          "./System.Text.RegularExpressions.dll": {},
+          "./System.Threading.Channels.dll": {},
+          "./System.Threading.Overlapped.dll": {},
+          "./System.Threading.Tasks.Dataflow.dll": {},
+          "./System.Threading.Tasks.Extensions.dll": {},
+          "./System.Threading.Tasks.Parallel.dll": {},
+          "./System.Threading.Tasks.dll": {},
+          "./System.Threading.Thread.dll": {},
+          "./System.Threading.ThreadPool.dll": {},
+          "./System.Threading.Timer.dll": {},
+          "./System.Threading.dll": {},
+          "./System.Transactions.Local.dll": {},
+          "./System.Transactions.dll": {},
+          "./System.ValueTuple.dll": {},
+          "./System.Web.HttpUtility.dll": {},
+          "./System.Web.dll": {},
+          "./System.Windows.dll": {},
+          "./System.Xml.Linq.dll": {},
+          "./System.Xml.ReaderWriter.dll": {},
+          "./System.Xml.Serialization.dll": {},
+          "./System.Xml.XDocument.dll": {},
+          "./System.Xml.XPath.XDocument.dll": {},
+          "./System.Xml.XPath.dll": {},
+          "./System.Xml.XmlDocument.dll": {},
+          "./System.Xml.XmlSerializer.dll": {},
+          "./System.Xml.dll": {},
+          "./System.dll": {},
+          "./WindowsBase.dll": {},
+          "./mscorlib.dll": {},
+          "./netstandard.dll": {}
+        }
+      }
+    }
+  }
+}
