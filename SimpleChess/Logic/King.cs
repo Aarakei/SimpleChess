@@ -12,7 +12,7 @@ public class King : ChessPiece
         new Point(-1,0),                   new Point(1,0),
         new Point(-1,1),  new Point(0,1),  new Point(1,1)
     ];
-    protected override Point[] MoveDirections => _kingVectors;
+    public override Point[] MoveDirections => _kingVectors;
     protected override string RegionName => IsWhite ? "whiteKing" : "blackKing";
 
     public King(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)
@@ -41,7 +41,7 @@ public class King : ChessPiece
             Point? potentialMove = CheckSpace(boardState,col,row);
             if (potentialMove != null)
                 legalMoves.Add(potentialMove.Value);
-                
+
         }
 
         return legalMoves;

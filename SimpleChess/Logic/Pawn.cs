@@ -6,12 +6,13 @@ namespace SimpleChess.Logic;
 
 public class Pawn : ChessPiece
 {
-    protected override Point[] MoveDirections => null;
+    private Point[] _pawnVectors;
+    public override Point[] MoveDirections => _pawnVectors;
     protected override string RegionName => IsWhite ? "whitePawn" : "blackPawn";
 
     public Pawn(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)
     {
-        
+        _pawnVectors = IsWhite ? [new Point(-1,-1), new Point(1,-1)] : [new Point(-1,1),  new Point(1,1)];
     }
 
     public override List<Point> GetLegalMoves(ChessPiece[,] boardState, Point position)

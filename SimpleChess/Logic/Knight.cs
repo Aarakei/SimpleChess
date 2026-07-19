@@ -14,7 +14,7 @@ public class Knight : ChessPiece
         new Point(-2,1),  new Point(2,1),
         new Point(-1,2),  new Point(1,2)
     ];
-    protected override Point[] MoveDirections => _knightVectors;
+    public override Point[] MoveDirections => _knightVectors;
     protected override string RegionName => IsWhite ? "whiteKnight" : "blackKnight";
 
     public Knight(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)

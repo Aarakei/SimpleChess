@@ -17,7 +17,7 @@ public abstract class ChessPiece
     private readonly Sprite _sprite;
     public bool IsWhite {get; init;}
     protected bool HasMoved {get; set;}
-    protected abstract Point[] MoveDirections {get;}
+    public abstract Point[] MoveDirections {get;}
 
     public ChessPiece(bool isWhite, TextureAtlas atlas)
     {

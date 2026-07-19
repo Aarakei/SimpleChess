@@ -13,7 +13,7 @@ public class Bishop : ChessPiece
         new Point(-1,-1), new Point(1,-1),
         new Point(-1,1),  new Point(1,1)
     ];
-    protected override Point[] MoveDirections => _bishopVectors;
+    public override Point[] MoveDirections => _bishopVectors;
     protected override string RegionName => IsWhite ? "whiteBishop" : "blackBishop";
 
     public Bishop(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)

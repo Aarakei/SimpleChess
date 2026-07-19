@@ -14,7 +14,7 @@ public class Rook : ChessPiece
         new Point(-1, 0), // Left
         new Point(1, 0)   // Right
     ];
-    protected override Point[] MoveDirections => _rookVectors;
+    public override Point[] MoveDirections => _rookVectors;
     
     protected override string RegionName => IsWhite ? "whiteRook" : "blackRook";
 

@@ -9,8 +9,17 @@ using Microsoft.Xna.Framework.Content;
 
 namespace SimpleChess;
 
+public enum GameState
+{
+    Playing,
+    WhiteWin,
+    BlackWin,
+    Stalemate
+}
+
 public class Game1 : Core
 {
+    private GameState gameState;
     private float _scale;
     private Vector2 _boardPosition;
     private bool _boardFlipped;
@@ -26,6 +35,7 @@ public class Game1 : Core
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
+        gameState = GameState.Playing;
 
         base.Initialize(); // LoadContent is called at the end of this function call
 
@@ -54,15 +64,50 @@ public class Game1 : Core
 
         // TODO: Add your update logic here
 
+        // Flip the board if the F key is pressed
+        KeyboardState keyboard = Keyboard.GetState();
+        _boardFlipped = keyboard.IsKeyDown(Keys.F);
+
         // If there was a click
         _mouseState = Mouse.GetState();
         if (_mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton == ButtonState.Released)
         {
-            _chessBoard.OnClick(new Vector2(_mouseState.X,_mouseState.Y),_boardPosition,_scale,_boardFlipped);
+            if (gameState == GameState.Playing)
+            {
+                _chessBoard.OnClick(new Vector2(_mouseState.X,_mouseState.Y),_boardPosition,_scale,_boardFlipped);
+            }
+            else
+            {
+                // Clicked To Play Again
+                gameState = GameState.Playing;
+                _chessBoard.Reset();
+            }
         }
         _previousMouseState = _mouseState;
 
         // _chessBoard.Update(_mouseState, _boardPosition, _scale, _boardFlipped);
+
+        switch (_chessBoard.State)
+        {
+            case GameState.Playing: break;
+            
+            case GameState.WhiteWin:
+                gameState = GameState.WhiteWin;
+                break;
+
+            case GameState.BlackWin:
+                gameState = GameState.BlackWin;
+                break;
+
+            // TODO: Add Stalemate Support
+            
+            default: break;
+        }
+        // If the game is over, display the Win Screen
+        if (_chessBoard.State != GameState.Playing)
+        {
+            
+        }
 
         base.Update(gameTime);
     }
@@ -79,6 +124,9 @@ public class Game1 : Core
                         _scale,
                         _boardFlipped
                         );
+
+        if (gameState == GameState.WhiteWin || gameState == GameState.BlackWin)
+            _chessBoard.DrawWinScreen(SpriteBatch,_boardPosition,_scale,gameState);
 
         SpriteBatch.End();
 

@@ -12,7 +12,7 @@ public class Queen : ChessPiece
         new Point(-1,0),                   new Point(1,0),
         new Point(-1,1),  new Point(0,1),  new Point(1,1)
     ];
-    protected override Point[] MoveDirections => _queenVectors;
+    public override Point[] MoveDirections => _queenVectors;
     protected override string RegionName => IsWhite ? "whiteQueen" : "blackQueen";
 
     public Queen(bool isWhite, TextureAtlas atlas) : base(isWhite, atlas)
